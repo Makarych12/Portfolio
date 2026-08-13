@@ -1,0 +1,93 @@
+export const en = {
+  header: {
+    logo: "MP // ENG",
+    status: "Available for Contracts / Projects",
+    statusShort: "Available",
+  },
+  nav: {
+    hero: "Home",
+    projects: "Projects",
+    principles: "Principles",
+    contact: "Contact",
+  },
+  hero: {
+    name: "Maksim Popkov",
+    role: "Systems & AI Engineer",
+    tagline: "Engineering high-performance web systems, interactive schematics, and mobile AI pipelines with extreme velocity.",
+    ageCallout: "41 y/o • Pragmatic Engineering • AI-First Velocity",
+    stats: {
+      releases: "Commercial Releases",
+      lighthouse: "Lighthouse Benchmark",
+      optimization: "C++ Native Optimization",
+    },
+    exploreProjects: "Explore Projects",
+    liveSchematics: "Live Schematics",
+  },
+  projects: {
+    title: "Featured Projects",
+    subtitle: "Engineering Solutions • AI Systems • Industrial Simulators",
+    filters: {
+      all: "All",
+      web: "Web Platforms",
+      mobile: "Mobile & AI",
+      systems: "Systems & Workflow",
+    },
+    liveDemo: "Live Demo",
+    category: "Category",
+    items: {
+      schematics: {
+        title: "Interactive Locomotive Electrical Schematic Simulator",
+        desc: 'Interactive simulation of diesel locomotive engine startup ("Стартиране на двигателя"). Real-time SVG conductor lighting, circuit filters (Power, Control, Protection), dynamic zoom/pan, and structured documentation (Sections 01–11).',
+        market: "Bulgarian State Railways (BDZ)",
+      },
+      smartbg: {
+        title: "SMARTBG — AI-Powered National Service Ecosystem",
+        desc: "Largest national portal for Bulgaria covering Finance, Taxes, Real Estate, Automotive, and Government Services. Integrated with OpenAI Assistant, achieving 100/100 Lighthouse performance and WCAG AA accessibility.",
+        metrics: "System Metrics",
+      },
+      smartbuddy: {
+        title: "SmartBuddy AI — Hybrid Android Budget & OCR Scanner",
+        desc: "Android native app for smart receipt scanning and budget management. Hybrid OCR pipeline: Google Document Scanner + Gemini 2.5 Flash for online parsing, offline C++ PP-OCRv5 + ncnn engine. APK optimized from 272MB to 87.5MB.",
+        apkOptimized: "APK Optimized",
+        from: "from",
+        to: "to",
+      },
+      vertex: {
+        title: "Vertex AI & Agent Orchestration Workflow",
+        desc: "Strict specification-driven engineering framework for AI agents (Cline, Roo Code, Claude Code). Enforces micro-task isolation, 200-line component rules, TypeScript strict typing, and Conventional Commits for zero-drift development.",
+        terminal: "Terminal",
+      },
+    },
+    filters_labels: {
+      power: "Power",
+      control: "Control",
+      protection: "Protection",
+    },
+  },
+  principles: {
+    title: "Engineering Principles & AI Workflow",
+    subtitle: "Strict Coding Standards • Micro-Commits • Agent Orchestration",
+    terminalTitle: "terminal — mp-engineering-standards",
+    lines: {
+      "1": "Initializing engineering standards...",
+      "2": "Loading project specifications...",
+      "3": "Ready. Active rules:",
+      rule1: "► RULE: Components ≤ 200 lines — micro-task isolation",
+      rule2: "► RULE: TypeScript strict — zero tolerance for any",
+      rule3: "► RULE: Conventional Commits — zero-drift development",
+      rule4: "► RULE: AI agent orchestration — Cline / Roo / Claude Code",
+      rule5: "► RULE: Production-ready code — no stubs allowed",
+      status: "System status: OPTIMAL",
+    },
+  },
+  footer: {
+    title: "Contact",
+    rights: "All rights reserved",
+    builtWith: "Built with Next.js 15 • Tailwind • Framer Motion",
+    github: "GitHub",
+    telegram: "Telegram",
+    email: "Email",
+  },
+};
+
+export type Dictionary = typeof en;
