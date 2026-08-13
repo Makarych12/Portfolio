@@ -161,7 +161,7 @@ export default function Projects() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         <a
-                          href="/downloads/SmartBuddy-v2.0-alpha.apk"
+                          href="/downloads/SmartBuddy-AI-FINAL-RELEASE-1.0.0-RC2.apk"
                           download
                           className={`inline-flex items-center gap-2 rounded-md border ${project.borderColor} bg-slate3 px-4 py-2 font-mono text-xs font-semibold ${project.accent} transition-all hover:bg-slate-700/40`}
                         >

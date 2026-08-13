@@ -51,7 +51,7 @@ export const en = {
         apkOptimized: "APK Optimized",
         from: "from",
         to: "to",
-        downloadApk: "Download APK (v2.0-alpha)",
+        downloadApk: "Download APK (1.0.0-RC2)",
         contactTelegram: "Contact via Telegram",
         betaStatus: "Private Beta • APK available on request",
       },
