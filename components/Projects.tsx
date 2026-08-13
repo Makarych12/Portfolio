@@ -4,7 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { ExternalLink, Folder } from "lucide-react";
+import { ExternalLink, Folder, Download, Send, Circle } from "lucide-react";
 
 const SchematicWidget = dynamic(() => import("./widgets/SchematicWidget"), { ssr: false });
 const SmartBgWidget = dynamic(() => import("./widgets/SmartBgWidget"), { ssr: false });
@@ -24,6 +24,7 @@ interface Project {
   glowClass: string;
   widget: React.ReactNode;
   extraInfo?: string;
+  isSmartBuddy?: boolean;
 }
 
 export default function Projects() {
@@ -71,6 +72,7 @@ export default function Projects() {
       borderColor: "border-cyan-500/20",
       glowClass: "hover:box-glow-cyan",
       widget: <PhoneMockupWidget />,
+      isSmartBuddy: true,
     },
     {
       id: "vertex",
@@ -151,7 +153,33 @@ export default function Projects() {
                 <div className="mb-4">{project.widget}</div>
 
                 <div className="mt-auto">
-                  {project.url !== "#" ? (
+                  {project.isSmartBuddy ? (
+                    <div className="space-y-3">
+                      <div className="inline-flex items-center gap-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1">
+                        <Circle className="h-2 w-2 fill-emerald-400 text-emerald-400" />
+                        <span className="font-mono text-[9px] text-emerald-400">{t("projects.items.smartbuddy.betaStatus")}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        <a
+                          href="/downloads/SmartBuddy-v2.0-alpha.apk"
+                          download
+                          className={`inline-flex items-center gap-2 rounded-md border ${project.borderColor} bg-slate3 px-4 py-2 font-mono text-xs font-semibold ${project.accent} transition-all hover:bg-slate-700/40`}
+                        >
+                          <Download className="h-3.5 w-3.5" />
+                          {t("projects.items.smartbuddy.downloadApk")}
+                        </a>
+                        <a
+                          href="https://t.me/MaximLive12"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-md border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 font-mono text-xs font-semibold text-cyan-400 transition-all hover:bg-cyan-500/20"
+                        >
+                          <Send className="h-3.5 w-3.5" />
+                          {t("projects.items.smartbuddy.contactTelegram")}
+                        </a>
+                      </div>
+                    </div>
+                  ) : project.url !== "#" ? (
                     <a
                       href={project.url}
                       target="_blank"

@@ -9,7 +9,7 @@ export default function Footer() {
   const links = [
     { icon: Github, label: t("footer.github"), href: "https://github.com/Makarych12/Portfolio", color: "text-zinc-400 hover:text-amber-400" },
     { icon: Send, label: t("footer.telegram"), href: "https://t.me/MaximLive12", color: "text-zinc-400 hover:text-cyan-400" },
-    { icon: Mail, label: t("footer.email"), href: "mailto:contact@popkov.dev", color: "text-zinc-400 hover:text-emerald-400" },
+    { icon: Mail, label: t("footer.email"), href: "mailto:maksteplov1287@gmail.com", color: "text-zinc-400 hover:text-emerald-400" },
   ];
 
   return (

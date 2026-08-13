@@ -12,7 +12,7 @@ export const ru = {
   },
   hero: {
     name: "Максим Попков",
-    role: "Системный & AI-инженер",
+    role: "Системный & AI-инженер • Fullstack & Backend Developer",
     tagline: "Создание высокопроизводительных веб-систем, интерактивных схем и мобильных AI-конвейеров с максимальной скоростью.",
     ageCallout: "41 год • Прагматичная инженерия • AI-первая скорость",
     stats: {
@@ -51,6 +51,9 @@ export const ru = {
         apkOptimized: "APK оптимизирован",
         from: "с",
         to: "до",
+        downloadApk: "Скачать APK (v2.0-alpha)",
+        contactTelegram: "Написать в Telegram",
+        betaStatus: "Private Beta • APK доступен по запросу",
       },
       vertex: {
         title: "Vertex AI — оркестрация AI-агентов",
@@ -80,10 +83,21 @@ export const ru = {
       status: "Статус системы: ОПТИМАЛЬНЫЙ",
     },
   },
+  skills: {
+    title: "Технический арсенал",
+    subtitle: "Fullstack-инженерия от оркестрации AI до нативной C++ оптимизации",
+    languages: "Языки и рантаймы",
+    languagesList: "JavaScript (ES6+), TypeScript, Node.js, Kotlin, C++ (нативные ML-рантаймы)",
+    backend: "Backend и базы данных",
+    backendList: "REST API архитектура, Node.js backend, PostgreSQL, Supabase, Room DB, SQLite",
+    telegram: "Telegram автоматизация",
+    telegramList: "Разработка кастомных Telegram-ботов, Webhooks, AI-бот интеграция",
+    philosophy: "Сильная практическая инженерия: от высокоуровневой оркестрации AI-агентов до ручной JS/TS отладки и нативной C++ оптимизации.",
+  },
   footer: {
     title: "Контакты",
     rights: "Все права защищены",
-    builtWith: "Создано с Next.js 15 • Tailwind • Framer Motion",
+    builtWith: "Создано с Next.js 16 • Tailwind • Framer Motion",
     github: "GitHub",
     telegram: "Telegram",
     email: "Email",

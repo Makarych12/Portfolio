@@ -12,7 +12,7 @@ export const en = {
   },
   hero: {
     name: "Maksim Popkov",
-    role: "Systems & AI Engineer",
+    role: "Systems & AI Engineer • Fullstack & Backend Developer",
     tagline: "Engineering high-performance web systems, interactive schematics, and mobile AI pipelines with extreme velocity.",
     ageCallout: "41 y/o • Pragmatic Engineering • AI-First Velocity",
     stats: {
@@ -51,6 +51,9 @@ export const en = {
         apkOptimized: "APK Optimized",
         from: "from",
         to: "to",
+        downloadApk: "Download APK (v2.0-alpha)",
+        contactTelegram: "Contact via Telegram",
+        betaStatus: "Private Beta • APK available on request",
       },
       vertex: {
         title: "Vertex AI & Agent Orchestration Workflow",
@@ -80,10 +83,21 @@ export const en = {
       status: "System status: OPTIMAL",
     },
   },
+  skills: {
+    title: "Technical Arsenal",
+    subtitle: "Full-stack engineering from AI orchestration to native C++ optimization",
+    languages: "Languages & Runtimes",
+    languagesList: "JavaScript (ES6+), TypeScript, Node.js, Kotlin, C++ (Native ML runtimes)",
+    backend: "Backend & Databases",
+    backendList: "REST API Architecture, Node.js Backend, PostgreSQL, Supabase, Room DB, SQLite",
+    telegram: "Telegram Automation",
+    telegramList: "Custom Telegram Bot development, Webhooks, AI-bot integration",
+    philosophy: "Strong practical engineering: From high-level AI Agent orchestration down to manual JS/TS debugging and native C++ optimization.",
+  },
   footer: {
     title: "Contact",
     rights: "All rights reserved",
-    builtWith: "Built with Next.js 15 • Tailwind • Framer Motion",
+    builtWith: "Built with Next.js 16 • Tailwind • Framer Motion",
     github: "GitHub",
     telegram: "Telegram",
     email: "Email",
