@@ -1,8 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { ArrowDown, ExternalLink, Zap, Gauge, Cpu } from "lucide-react";
+
+function AnimatedCounter({ target, suffix, duration = 1.5 }: { target: number; suffix?: string; duration?: number }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => {
+    const val = Math.round(v * 10) / 10;
+    return val % 1 === 0 ? Math.round(val).toString() : val.toFixed(1);
+  });
+
+  useEffect(() => {
+    const controls = animate(count, target, { duration, ease: "easeOut" });
+    return controls.stop;
+  }, [count, target, duration]);
+
+  return (
+    <span className={`font-mono text-2xl font-bold`}>
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
+  );
+}
 
 export default function Hero() {
   const { t } = useTranslation();
@@ -10,7 +31,8 @@ export default function Hero() {
   const stats = [
     {
       icon: Zap,
-      value: "4",
+      target: 4,
+      suffix: "",
       label: t("hero.stats.releases"),
       color: "text-amber-400",
       border: "border-amber-500/30",
@@ -18,7 +40,8 @@ export default function Hero() {
     },
     {
       icon: Gauge,
-      value: "100/100",
+      target: 100,
+      suffix: "/100",
       label: t("hero.stats.lighthouse"),
       color: "text-emerald-400",
       border: "border-emerald-500/30",
@@ -26,7 +49,8 @@ export default function Hero() {
     },
     {
       icon: Cpu,
-      value: "87.5MB",
+      target: 87.5,
+      suffix: "MB",
       label: t("hero.stats.optimization"),
       color: "text-cyan-400",
       border: "border-cyan-500/30",
@@ -91,18 +115,21 @@ export default function Hero() {
           className="mb-10 grid grid-cols-1 gap-3 sm:grid-cols-3"
         >
           {stats.map((stat, i) => (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.15 }}
               className={`flex flex-col items-center gap-1 rounded-lg border ${stat.border} bg-slate2/60 p-4 ${stat.glow}`}
             >
               <stat.icon className={`mb-1 h-5 w-5 ${stat.color}`} />
-              <span className={`font-mono text-2xl font-bold ${stat.color}`}>
-                {stat.value}
+              <span className={stat.color}>
+                <AnimatedCounter target={stat.target} suffix={stat.suffix} duration={2} />
               </span>
               <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
                 {stat.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
