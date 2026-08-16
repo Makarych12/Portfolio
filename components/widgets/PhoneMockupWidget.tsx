@@ -58,7 +58,7 @@ export default function PhoneMockupWidget() {
             {/* Budget progress bar */}
             <div className="mx-2 mt-2">
               <div className="mb-0.5 flex justify-between">
-                <span className="font-mono text-[6px] text-zinc-500">Budget</span>
+                <span className="font-mono text-[6px] text-zinc-500">{t("ui.budget")}</span>
                 <span className="font-mono text-[6px] text-emerald-400">1,240 / 2,000</span>
               </div>
               <div className="h-1.5 overflow-hidden rounded-full bg-zinc-800">

@@ -8,13 +8,13 @@ export default function SmartBgWidget() {
   const { t } = useTranslation();
 
   const metrics = [
-    { label: "Performance", value: 100, icon: Zap, color: "text-emerald-400" },
-    { label: "Accessibility", value: 100, icon: Accessibility, color: "text-emerald-400" },
-    { label: "Best Practices", value: 100, icon: CheckCircle2, color: "text-emerald-400" },
+    { label: t("ui.performance"), value: 100, icon: Zap, color: "text-emerald-400" },
+    { label: t("ui.accessibility"), value: 100, icon: Accessibility, color: "text-emerald-400" },
+    { label: t("ui.bestPractices"), value: 100, icon: CheckCircle2, color: "text-emerald-400" },
     { label: "SEO", value: 100, icon: Gauge, color: "text-emerald-400" },
   ];
 
-  const tags = ["OpenAI", "WCAG AA", "Next.js", "Finance", "Taxes", "Real Estate", "Auto", "Gov"];
+  const tags = ["OpenAI", "WCAG AA", "Next.js", t("ui.finance"), t("ui.taxes"), t("ui.realEstate"), t("ui.automotive"), t("ui.government")];
 
   return (
     <div className="space-y-3">
@@ -25,7 +25,7 @@ export default function SmartBgWidget() {
           </span>
           <div className="flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-mono text-[9px] text-emerald-400">LIVE</span>
+            <span className="font-mono text-[9px] uppercase text-emerald-400">{t("ui.live")}</span>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2">

@@ -23,6 +23,9 @@ function getSnapshot() {
 
 export function setLocale(l: Locale) {
   currentLocale = l;
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = l;
+  }
   listeners.forEach(fn => fn());
 }
 

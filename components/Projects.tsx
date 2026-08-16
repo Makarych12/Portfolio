@@ -1,202 +1,123 @@
 "use client";
 
-import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import type { CSSProperties, ReactNode } from "react";
+import { useState } from "react";
 import { useTranslation } from "@/lib/i18n";
-import { ExternalLink, Folder, Download, Send, Circle } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, Send } from "lucide-react";
 
-const SchematicWidget = dynamic(() => import("./widgets/SchematicWidget"), { ssr: false });
-const SmartBgWidget = dynamic(() => import("./widgets/SmartBgWidget"), { ssr: false });
 const PhoneMockupWidget = dynamic(() => import("./widgets/PhoneMockupWidget"), { ssr: false });
-const TerminalWidget = dynamic(() => import("./widgets/TerminalWidget"), { ssr: false });
 
 type FilterKey = "all" | "web" | "mobile" | "systems";
 
-interface Project {
+type Project = {
   id: string;
-  category: FilterKey;
-  url: string;
-  titleKey: string;
-  descKey: string;
+  category: Exclude<FilterKey, "all">;
+  title: string;
+  desc: string;
+  note: string;
+  tags: string[];
   accent: string;
-  borderColor: string;
-  glowClass: string;
-  widget: React.ReactNode;
-  extraInfo?: string;
-  isSmartBuddy?: boolean;
-}
+  url?: string;
+  download?: string;
+  image?: string;
+  alt?: string;
+  visual?: ReactNode;
+};
 
 export default function Projects() {
   const { t } = useTranslation();
   const [filter, setFilter] = useState<FilterKey>("all");
-
-  const filters: { key: FilterKey; label: string }[] = [
-    { key: "all", label: t("projects.filters.all") },
-    { key: "web", label: t("projects.filters.web") },
-    { key: "mobile", label: t("projects.filters.mobile") },
-    { key: "systems", label: t("projects.filters.systems") },
-  ];
-
+  const reduced = useReducedMotion();
+  const filters: FilterKey[] = ["all", "web", "mobile", "systems"];
   const projects: Project[] = [
-    {
-      id: "schematics",
-      category: "web",
-      url: "https://bdz-schematics.vercel.app",
-      titleKey: "projects.items.schematics.title",
-      descKey: "projects.items.schematics.desc",
-      accent: "text-amber-400",
-      borderColor: "border-amber-500/20",
-      glowClass: "hover:box-glow-amber",
-      widget: <SchematicWidget />,
-      extraInfo: t("projects.items.schematics.market"),
-    },
-    {
-      id: "smartbg",
-      category: "web",
-      url: "https://smartbg-one.vercel.app",
-      titleKey: "projects.items.smartbg.title",
-      descKey: "projects.items.smartbg.desc",
-      accent: "text-emerald-400",
-      borderColor: "border-emerald-500/20",
-      glowClass: "hover:box-glow-emerald",
-      widget: <SmartBgWidget />,
-    },
-    {
-      id: "smartbuddy",
-      category: "mobile",
-      url: "#",
-      titleKey: "projects.items.smartbuddy.title",
-      descKey: "projects.items.smartbuddy.desc",
-      accent: "text-cyan-400",
-      borderColor: "border-cyan-500/20",
-      glowClass: "hover:box-glow-cyan",
-      widget: <PhoneMockupWidget />,
-      isSmartBuddy: true,
-    },
-    {
-      id: "vertex",
-      category: "systems",
-      url: "https://vertex-ai-workspace.vercel.app",
-      titleKey: "projects.items.vertex.title",
-      descKey: "projects.items.vertex.desc",
-      accent: "text-amber-400",
-      borderColor: "border-amber-500/20",
-      glowClass: "hover:box-glow-amber",
-      widget: <TerminalWidget />,
-    },
+    { id: "schematics", category: "web" as const, title: t("projects.items.schematics.title"), desc: t("projects.items.schematics.desc"), note: t("projects.items.schematics.market"), tags: ["Next.js", t("ui.svgSystems"), t("ui.simulation")], url: "https://bdz-schematics.vercel.app", accent: "#ff5a36", image: "/projects/bdz-schematics.png", alt: t("projects.items.schematics.alt") },
+    { id: "smartbg", category: "web" as const, title: t("projects.items.smartbg.title"), desc: t("projects.items.smartbg.desc"), note: t("ui.digitalServiceEcosystem"), tags: ["OpenAI", "WCAG AA", "100 Lighthouse"], url: "https://smartbg-one.vercel.app", accent: "#b8ff65", image: "/projects/smartbg.png", alt: t("projects.items.smartbg.alt") },
+    { id: "vertex", category: "systems" as const, title: t("projects.items.vertex.title"), desc: t("projects.items.vertex.desc"), note: t("ui.specificationDrivenEngineering"), tags: ["TypeScript", t("ui.agentSystems"), t("ui.workflow")], url: "https://vertex-ai-workspace.vercel.app", accent: "#d4b9ff", image: "/projects/vertex-ai-workspace.png", alt: t("projects.items.vertex.alt") },
+    { id: "smartbuddy", category: "mobile" as const, title: t("projects.items.smartbuddy.title"), desc: t("projects.items.smartbuddy.desc"), note: t("projects.items.smartbuddy.betaStatus"), tags: ["Kotlin", "Gemini 2.5", "C++ / ncnn"], accent: "#8cd6ff", visual: <PhoneMockupWidget />, download: "/downloads/SmartBuddy-AI-FINAL-RELEASE-1.0.0-RC2.apk" },
   ];
-
-  const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
+  const visible = filter === "all" ? projects : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="projects" className="relative py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="mb-2 text-3xl font-bold text-zinc-100 md:text-4xl">
-            {t("projects.title")}
-          </h2>
-          <p className="font-mono text-xs uppercase tracking-wider text-zinc-500">
-            {t("projects.subtitle")}
-          </p>
+    <section id="projects" className="relative scroll-mt-20 py-[clamp(5rem,8vw,8rem)]">
+      <div className="shell">
+        <div className="section-rule grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-8">
+            <p className="eyebrow mb-5">01 / {t("ui.selectedWork")}</p>
+            <h2 className="max-w-5xl text-[clamp(3rem,7.5vw,8rem)] font-bold leading-[0.9] tracking-[-0.065em]">{t("projects.title")}</h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-[var(--muted)] md:col-span-4 md:justify-self-end">{t("projects.subtitle")}</p>
         </div>
 
-        <div className="mb-8 flex flex-wrap justify-center gap-2">
-          {filters.map((f) => (
-            <button
-              key={f.key}
-              onClick={() => setFilter(f.key)}
-              className={`rounded-md border px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all ${
-                filter === f.key
-                  ? "border-amber-500/50 bg-amber-500/10 text-amber-400"
-                  : "border-zinc-800 bg-slate2 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
-              }`}
-            >
-              {f.label}
-            </button>
+        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-b border-white/15 pb-4" role="group" aria-label={t("ui.projectFilters")}>
+          {filters.map((item) => (
+            <button key={item} onClick={() => setFilter(item)} aria-pressed={filter === item} className={`min-h-11 border-b px-1 mono text-[9px] transition-colors ${filter === item ? "border-[var(--signal)] text-[var(--paper)]" : "border-transparent text-[var(--muted)] hover:text-[var(--paper)]"}`}>{t(`projects.filters.${item}`)}</button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {filtered.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className={`group relative flex flex-col rounded-xl border ${project.borderColor} bg-slate2/60 p-5 transition-all ${project.glowClass}`}
-              >
-                <div className="mb-3 flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <Folder className={`h-4 w-4 ${project.accent}`} />
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
-                      {t("projects.category")}: {t(`projects.filters.${project.category === "all" ? "web" : project.category}`)}
-                    </span>
-                  </div>
+        <div className="mt-12 space-y-[clamp(4.5rem,7vw,7rem)]">
+          <AnimatePresence mode="popLayout">
+            {visible.map((project, index) => (
+              <motion.article key={project.id} layout initial={{ opacity: 0, y: reduced ? 0 : 36 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -20 }} transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }} className="min-w-0">
+                <div className="mb-4 flex items-center justify-between gap-4 border-t border-white/15 pt-4 mono text-[9px] text-[var(--muted)]">
+                  <span>{t("ui.caseLabel")} 0{projects.findIndex((item) => item.id === project.id) + 1}</span>
+                  <span className="text-right">{t(`projects.filters.${project.category}`)}</span>
                 </div>
 
-                <h3 className={`mb-2 text-lg font-bold ${project.accent}`}>
-                  {t(project.titleKey)}
-                </h3>
-
-                {project.extraInfo && (
-                  <div className="mb-2 inline-flex w-fit items-center gap-1.5 rounded border border-amber-500/20 bg-amber-500/5 px-2 py-0.5">
-                    <span className="font-mono text-[9px] text-amber-400">{project.extraInfo}</span>
-                  </div>
-                )}
-
-                <p className="mb-4 text-sm leading-relaxed text-zinc-400">
-                  {t(project.descKey)}
-                </p>
-
-                <div className="mb-4">{project.widget}</div>
-
-                <div className="mt-auto">
-                  {project.isSmartBuddy ? (
-                    <div className="space-y-3">
-                      <div className="inline-flex items-center gap-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1">
-                        <Circle className="h-2 w-2 fill-emerald-400 text-emerald-400" />
-                        <span className="font-mono text-[9px] text-emerald-400">{t("projects.items.smartbuddy.betaStatus")}</span>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        <a
-                          href="/downloads/SmartBuddy-AI-FINAL-RELEASE-1.0.0-RC2.apk"
-                          download
-                          className={`inline-flex items-center gap-2 rounded-md border ${project.borderColor} bg-slate3 px-4 py-2 font-mono text-xs font-semibold ${project.accent} transition-all hover:bg-slate-700/40`}
-                        >
-                          <Download className="h-3.5 w-3.5" />
-                          {t("projects.items.smartbuddy.downloadApk")}
-                        </a>
-                        <a
-                          href="https://t.me/MaximLive12"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-md border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 font-mono text-xs font-semibold text-cyan-400 transition-all hover:bg-cyan-500/20"
-                        >
-                          <Send className="h-3.5 w-3.5" />
-                          {t("projects.items.smartbuddy.contactTelegram")}
-                        </a>
-                      </div>
-                    </div>
-                  ) : project.url !== "#" ? (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 rounded-md border ${project.borderColor} bg-slate3 px-4 py-2 font-mono text-xs font-semibold ${project.accent} transition-all hover:bg-slate-700/40`}
+                <div
+                  className={`project-stage ${project.image ? "project-stage--image" : ""}`}
+                  style={{
+                    background: `radial-gradient(circle at ${index % 2 ? "20%" : "80%"} 20%, ${project.accent}18, transparent 38%), #0d0e0d`,
+                    "--case-accent": project.accent,
+                  } as CSSProperties}
+                >
+                  <span className="project-index z-20 select-none" aria-hidden="true">0{projects.findIndex((item) => item.id === project.id) + 1}</span>
+                  {project.image && project.alt ? (
+                    <motion.div
+                      className="project-image-frame absolute"
+                      initial={reduced ? false : { opacity: 0 }}
+                      whileInView={reduced ? undefined : { opacity: 1 }}
+                      viewport={{ once: true, amount: 0.25 }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {t("projects.liveDemo")}
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
+                      <Image
+                        src={project.image}
+                        alt={project.alt}
+                        fill
+                        sizes="(max-width: 767px) calc(100vw - 2.2rem), (max-width: 1600px) calc(100vw - 6.4vw), 1480px"
+                        className="object-contain object-center"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/5" />
+                      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+                    </motion.div>
                   ) : (
-                    <span className="inline-flex items-center gap-2 rounded-md border border-zinc-700 bg-slate3 px-4 py-2 font-mono text-xs text-zinc-500">
-                      Mobile App — Kotlin & Jetpack Compose
-                    </span>
+                    <div className="relative z-10 flex h-full items-center justify-center px-5 py-4 sm:px-8 sm:py-5">
+                      <div className="w-full max-w-xs scale-[0.86] sm:scale-100">{project.visual}</div>
+                    </div>
                   )}
+                  {!project.image && <div className="absolute bottom-4 left-4 right-4 z-20 mono text-[8px] text-white/45">{t("ui.interactivePreview")} / {project.id}</div>}
                 </div>
-              </motion.div>
+
+                <div className="mt-6 grid min-w-0 gap-7 lg:grid-cols-12 lg:gap-10">
+                  <div className="min-w-0 lg:col-span-5">
+                    <h3 className="max-w-[19ch] text-pretty text-[clamp(2.25rem,4vw,4.6rem)] font-semibold leading-[1.01] tracking-[-0.045em]">{project.title}</h3>
+                  </div>
+                  <div className="min-w-0 lg:col-span-7 lg:pl-[clamp(1rem,3vw,3.5rem)]">
+                    <p className="text-sm leading-7 text-[var(--muted)] md:text-[0.95rem]">{project.desc}</p>
+                    <p className="mt-6 border-l border-[var(--signal)] pl-4 mono text-[9px] leading-relaxed" style={{ borderColor: project.accent }}>{project.note}</p>
+                    <div className="mt-7 flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="border border-white/15 px-2.5 py-1.5 mono text-[8px] text-white/55">{tag}</span>)}</div>
+                    <div className="mt-8 flex flex-wrap gap-6">
+                      {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="magnetic-link mono text-[9px]">{t("projects.liveDemo")}<ArrowUpRight className="h-4 w-4" /></a>}
+                      {project.download && <a href={project.download} download className="magnetic-link mono text-[9px]">{t("projects.items.smartbuddy.downloadApk")}<ArrowDownToLine className="h-4 w-4" /></a>}
+                      {project.download && <a href="https://t.me/MaximLive12" target="_blank" rel="noopener noreferrer" aria-label={t("projects.items.smartbuddy.contactTelegram")} className="grid h-12 w-12 place-items-center rounded-full border border-white/20 text-[var(--muted)] transition-colors hover:border-[var(--signal)] hover:text-[var(--signal)]"><Send className="h-4 w-4" /></a>}
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
             ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>
