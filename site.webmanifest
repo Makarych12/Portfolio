@@ -1,0 +1,21 @@
+{
+  "name": "Maksym Popkov | Practical engineer & developer",
+  "short_name": "Maksym",
+  "description": "Portfolio of a practical engineer with a background in electrical engineering and automation: TypeScript, Node.js, Python, SDR/radio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#c9a84c",
+  "icons": [
+    {
+      "src": "/images/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
