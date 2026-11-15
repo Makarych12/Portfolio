@@ -335,6 +335,25 @@ function buildCard(p, lang, index) {
     el('p', { className: 'project-card__desc', textContent: pickLang(p.desc, lang) })
   );
 
+  // Заметные кнопки на самой карточке: «Демо ↗» и «GitHub» показываются всегда, когда ссылка есть
+  const L = p.links || {};
+  const cardLinks = [];
+  if (L.demo)   cardLinks.push([L.demo, ui.demo + ' ↗', 'btn--primary']);
+  if (L.github) cardLinks.push([L.github, ui.code, 'btn--outline']);
+  if (cardLinks.length) {
+    const actions = el('div', { className: 'project-card__actions' });
+    cardLinks.forEach(([href, label, cls]) => {
+      const a = el('a', { href, className: 'btn btn--sm ' + cls, textContent: label });
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      // клик и Enter по ссылке не должны открывать модальное окно карточки
+      a.addEventListener('click', (e) => e.stopPropagation());
+      a.addEventListener('keydown', (e) => e.stopPropagation());
+      actions.append(a);
+    });
+    body.append(actions);
+  }
+
   card.append(wrap, body);
   card.addEventListener('click', () => openProject(p.id));
   card.addEventListener('keydown', (e) => {

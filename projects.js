@@ -157,9 +157,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 'graphik', cat: ['apps'], img: 'images/proj-graphik.jpg', status: 'local',
+    id: 'graphik', cat: ['apps'], img: 'images/proj-graphik.jpg', status: 'live',
     tags: ['Next.js', 'TypeScript', 'Zustand', 'IndexedDB', 'Tailwind CSS'],
-    links: { github: GH + 'Graphik' },
+    links: { demo: 'https://graphik-beryl.vercel.app/', github: GH + 'Graphik' },
     title: { ru: 'График рабочего времени · БДЖ', en: 'Work schedule planner · BDZ', bg: 'График на работното време · БДЖ' },
     desc: {
       ru: 'Приложение для составления и проверки графиков рабочего времени персонала: справочник бригады, базовые паттерны смен («2 через 2», пн–пт), расчёт нормы и переработок, правовая проверка по Наредба № 50, печать / PDF и экспорт JSON. Интерфейс на болгарском.',
@@ -219,9 +219,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 'chameleon', cat: ['learn'], img: 'images/proj-chameleon.jpg', status: 'local',
+    id: 'chameleon', cat: ['learn'], img: 'images/proj-chameleon.jpg', status: 'live',
     tags: ['React', 'TypeScript', 'Vite', 'PWA', 'Dexie', 'FSRS', 'Piper TTS'],
-    links: { github: GH + 'BG-Learning' },
+    links: { demo: 'https://bg-learning.vercel.app/', github: GH + 'BG-Learning' },
     title: 'Chameleon BG',
     desc: {
       ru: 'PWA для изучения болгарского русскоязычными, с упором на железнодорожную практику: более 16 тыс. словарных записей, 409 диалогов, тренажёры аудирования и разговорной речи, повторения FSRS. Локальная озвучка Piper (более 48 тыс. аудиофайлов); прогресс хранится в браузере.',
@@ -294,9 +294,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 'python-course', cat: ['learn'], img: 'images/proj-python-course.jpg', status: 'local',
+    id: 'python-course', cat: ['learn'], img: 'images/proj-python-course.jpg', status: 'live',
     tags: ['React', 'Vite', 'Tailwind CSS', 'Pyodide', 'Python'],
-    links: { github: GH + 'Backend' },
+    links: { demo: 'https://backend-mavrik2.vercel.app/', github: GH + 'Backend' },
     title: { ru: 'Python с нуля до Backend', en: 'Python from zero to Backend' },
     desc: {
       ru: 'Интерактивный курс Python и основ backend для новичков. Код выполняется прямо в браузере через Pyodide (CPython в WebAssembly); для уроков по FastAPI — мини-реализация fastapi/pydantic. Встроенный терминал-имитатор, светлая и тёмная темы.',
@@ -309,9 +309,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 'kicad', cat: ['learn', 'radio'], img: 'images/proj-kicad.jpg', status: 'local',
+    id: 'kicad', cat: ['learn', 'radio'], img: 'images/proj-kicad.jpg', status: 'live',
     tags: ['JavaScript', 'PWA', 'Vercel Functions', 'Upstash Redis', 'Anthropic / OpenRouter'],
-    links: { github: GH + 'KiCad' },
+    links: { demo: 'https://kicad-master-pro.vercel.app/', github: GH + 'KiCad' },
     title: { ru: 'KiCad Мастер Pro', en: 'KiCad Master Pro' },
     desc: {
       ru: 'Интерактивный курс проектирования печатных плат в KiCad 8–10: уроки, практика, тренажёр трассировки, симулятор, библиотека компонентов. Статический PWA-сайт плюс serverless API (Vercel): AI-ассистент со стримингом, чат, таблица лидеров, галерея проектов, Upstash Redis.',
@@ -326,9 +326,9 @@ const PROJECTS = [
 
   /* ───────── Переводчики (PWA + Node.js) ───────── */
   {
-    id: 'railbg', cat: ['backend', 'apps'], img: 'images/proj-railbg.jpg', status: 'local',
+    id: 'railbg', cat: ['backend', 'apps'], img: 'images/proj-railbg.jpg', status: 'live',
     tags: ['Node.js', 'PWA', 'DeepL', 'Web Speech API'],
-    links: {},
+    links: { demo: 'https://translate-mavrik2.vercel.app/', github: GH + 'Translate' },
     title: 'RailBG Translate',
     desc: {
       ru: 'PWA-переводчик RU ⇄ BG для железнодорожной и электротехнической терминологии, с глоссарием. Бэкенд на Node.js без зависимостей; работает без ключей (бесплатные провайдеры), с ключом — DeepL с защитой терминов. Голосовой ввод и озвучка через Web Speech API.',
@@ -341,9 +341,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 'railsi', cat: ['backend', 'apps'], img: 'images/proj-railsi.jpg', status: 'local',
+    id: 'railsi', cat: ['backend', 'apps'], img: 'images/proj-railsi.jpg', status: 'live',
     tags: ['Node.js', 'DeepL API', 'PWA', 'Vercel'],
-    links: { github: GH + 'Slovenian-Ru' },
+    links: { demo: 'https://slovenian-ru.vercel.app/', github: GH + 'Slovenian-Ru' },
     title: 'RailSI Translate',
     desc: {
       ru: 'Переводчик RU ⇄ SL через DeepL Free API. Node.js-бэкенд хранит ключ на сервере, ограничивает запросы (30/мин на IP, до 5000 символов) и покрыт контрактными тестами; PWA с историей и голосовым вводом. Serverless-функции для Vercel.',
@@ -373,9 +373,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 'yaesu', cat: ['radio'], img: 'images/proj-yaesu.jpg', status: 'local',
+    id: 'yaesu', cat: ['radio'], img: 'images/proj-yaesu.jpg', status: 'live',
     tags: ['TypeScript', 'Vite', 'PWA'],
-    links: { github: GH + 'YAESU-FT-70D' },
+    links: { demo: 'https://yaesu-ft-70-d.vercel.app/', github: GH + 'YAESU-FT-70D' },
     title: { ru: 'FT-70D · просто и понятно', en: 'FT-70D · simple and clear' },
     desc: {
       ru: 'Офлайн-справочник по рации Yaesu FT-70DE: 108 пошаговых инструкций, меню SET, поиск, репитеры и мастер настройки. Ставится на телефон как веб-приложение. Факты и источники лежат в research/; непроверенные процедуры помечены.',
@@ -385,6 +385,21 @@ const PROJECTS = [
       cs: 'Offline příručka k ručnímu transceiveru Yaesu FT-70DE: 108 návodů krok za krokem, menu SET, vyhledávání, převaděče a průvodce nastavením. Instaluje se do telefonu jako webová aplikace. Fakta a zdroje jsou v research/; neověřené postupy jsou označeny.',
       ro: 'Ghid offline pentru stația portabilă Yaesu FT-70DE: 108 instrucțiuni pas cu pas, meniul SET, căutare, repetoare și un asistent de configurare. Se instalează pe telefon ca aplicație web. Faptele și sursele sunt în research/; procedurile neverificate sunt marcate.',
       bg: 'Офлайн справочник за радиостанцията Yaesu FT-70DE: 108 стъпка по стъпка инструкции, меню SET, търсене, репитери и майстор за настройка. Инсталира се на телефона като уеб приложение. Фактите и източниците са в research/; непроверените процедури са отбелязани.',
+    },
+  },
+  {
+    id: 'kv-retro', cat: ['radio', 'learn'], img: 'images/proj-kv-retro.jpg', status: 'live',
+    tags: ['JavaScript', 'Tailwind CSS', 'Web Audio API', 'HTML5'],
+    links: { demo: 'https://kv-retro.vercel.app/', github: GH + 'kv-retro' },
+    title: { ru: 'КВ-Ретро · энциклопедия коротких волн', en: 'KV-Retro · shortwave history encyclopedia' },
+    desc: {
+      ru: 'Цифровая энциклопедия истории коротких волн в стиле радиорубки: лента времени (19 событий, 4 эпохи), галерея из 27 приёмников и трансиверов с характеристиками, 10 биографий и 27 статей об антеннах, схемотехнике, DX и радиолампах. Аналоговая шкала настройки со звуком эфира на Web Audio API, переход на QRZ.com по позывному. Чистый JavaScript, без сборки.',
+      en: 'A digital encyclopedia of shortwave radio history styled as a vintage radio room: a timeline (19 events, 4 eras), a gallery of 27 receivers and transceivers with specs, 10 biographies and 27 articles on antennas, circuit design, DXing and radio tubes. An analog tuning dial with on-air sound built on the Web Audio API and a callsign link to QRZ.com. Plain JavaScript, no build step.',
+      de: 'Digitale Enzyklopädie zur Geschichte der Kurzwelle im Stil einer Funkbude: Zeitleiste (19 Ereignisse, 4 Epochen), Galerie mit 27 Empfängern und Transceivern samt Daten, 10 Biografien und 27 Artikel zu Antennen, Schaltungstechnik, DXing und Funkröhren. Analoge Abstimmskala mit Funkgeräuschen über die Web Audio API und Rufzeichen-Link zu QRZ.com. Reines JavaScript, ohne Build.',
+      pl: 'Cyfrowa encyklopedia historii fal krótkich w stylu dawnej radiostacji: oś czasu (19 wydarzeń, 4 epoki), galeria 27 odbiorników i transceiverów z parametrami, 10 biogramów i 27 artykułów o antenach, układach, DX-ingu i lampach radiowych. Analogowa skala strojenia z dźwiękiem eteru w Web Audio API oraz odnośnik do znaku wywoławczego w QRZ.com. Czysty JavaScript, bez budowania.',
+      cs: 'Digitální encyklopedie historie krátkých vln ve stylu staré radiokukaně: časová osa (19 událostí, 4 éry), galerie 27 přijímačů a transceiverů s parametry, 10 životopisů a 27 článků o anténách, zapojeních, DX a elektronkách. Analogová ladicí stupnice se zvukem éteru přes Web Audio API a odkaz na volací značku v QRZ.com. Čistý JavaScript bez sestavování.',
+      ro: 'Enciclopedie digitală despre istoria undelor scurte, în stilul unei stații radio de epocă: cronologie (19 evenimente, 4 epoci), galerie cu 27 de receptoare și transceivere cu date tehnice, 10 biografii și 27 de articole despre antene, scheme, DX-ing și tuburi electronice. Scală de acord analogică cu sunetul eterului prin Web Audio API și legătură către indicativ pe QRZ.com. JavaScript simplu, fără build.',
+      bg: 'Дигитална енциклопедия за историята на късите вълни в стил радиорубка: времева линия (19 събития, 4 епохи), галерия от 27 приемника и трансивъра с параметри, 10 биографии и 27 статии за антени, схемотехника, DX и радиолампи. Аналогова скала за настройка със звук на ефира през Web Audio API и връзка към позивна в QRZ.com. Чист JavaScript, без билд.',
     },
   },
 ];
